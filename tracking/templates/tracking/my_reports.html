@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reports - Community Service Reporter</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reports/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MY REPORTS</h1>
+            <p>Track your service requests</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">{{ reports|length }}</div>
+                <div class="stat-label">TOTAL</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ reports|length }}</div>
+                <div class="stat-label">ACTIVE</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0</div>
+                <div class="stat-label">RESOLVED</div>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" id="searchReports" placeholder="Search reports...">
+        </div>
+        
+        <div class="reports-grid">
+            {% for report in reports %}
+            <div class="report-card">
+                <div class="report-header">
+                    <div class="report-title">
+                        REPORT #{{ report.id }}
+                    </div>
+                    <div class="report-category category-{{ report.category }}">
+                        {{ report.get_category_display|upper }}
+                    </div>
+                </div>
+                
+                <div class="report-location">
+                    {{ report.location }}
+                </div>
+                
+                <div class="status-container">
+                    <div class="status-dots">
+                        {% if report.status == 'reported' %}
+                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                        {% elif report.status == 'in_progress' %}
+                            <div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                        {% else %}
+                            <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+                        {% endif %}
+                    </div>
+                    <div class="status-text {{ report.status }}">
+                        {{ report.get_status_display|upper }}
+                    </div>
+                </div>
+                
+                <div class="report-location" style="margin-top: 1rem;">
+                    REPORTED: {{ report.created_at|date:"d M Y, H:i" }}
+                </div>
+                
+                <a href="/tracking/status/{{ report.id }}/" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">
+                    VIEW DETAILS →
+                </a>
+            </div>
+            {% empty %}
+            <div class="empty-state">
+                <h3>No reports found</h3>
+                <p>Submit your first report to get started</p>
+                <a href="/" class="btn btn-primary">REPORT AN ISSUE</a>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="nav">
+            <a href="/tracking/" class="active">📋 MY REPORTS</a>
+            <a href="/">📍 REPORT ISSUE</a>
+            <a href="/tracking/profile/">👤 PROFILE</a>
+        </div>
+    </div>
+    
+    <script src="{% static 'reports/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Community Service Reporter</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reports/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PROFILE</h1>
+            <p>Account information and statistics</p>
+        </div>
+        
+        <div class="card text-center">
+            <div class="profile-avatar">
+                U
+            </div>
+            <h2>Community Member</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Guest User</p>
+            
+            <div class="stats-grid" style="margin-top: 2rem;">
+                <div class="stat-card">
+                    <div class="stat-number">{{ report_count|default:"0" }}</div>
+                    <div class="stat-label">REPORTS</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">ACTIVE</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">RESOLVED</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                <button class="btn btn-primary" onclick="alert('Login functionality coming soon')">
+                    SIGN IN / REGISTER
+                </button>
+            </div>
+        </div>
+        
+        <div class="nav">
+            <a href="/tracking/">📋 MY REPORTS</a>
+            <a href="/">📍 REPORT ISSUE</a>
+            <a href="/tracking/profile/" class="active">👤 PROFILE</a>
+        </div>
+    </div>
+    
+    <script src="{% static 'reports/script.js' %}"></script>
+</body>
+</html>

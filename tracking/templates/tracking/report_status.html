@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report #{{ report.id }} - Community Service Reporter</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reports/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>REPORT #{{ report.id }}</h1>
+            <p>{{ report.get_category_display }}</p>
+        </div>
+        
+        <div class="card">
+            <div class="report-header" style="margin-bottom: 1.5rem;">
+                <div class="report-title" style="font-size: 1.25rem;">
+                    {{ report.get_category_display|upper }}
+                </div>
+                <div class="report-category category-{{ report.category }}">
+                    {{ report.get_category_display|upper }}
+                </div>
+            </div>
+            
+            <div class="report-location" style="margin-bottom: 1rem;">
+                {{ report.location }}
+            </div>
+            
+            <div class="status-container">
+                <div class="status-dots">
+                    {% if report.status == 'reported' %}
+                        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    {% elif report.status == 'in_progress' %}
+                        <div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    {% else %}
+                        <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+                    {% endif %}
+                </div>
+                <div class="status-text {{ report.status }}" style="font-size: 0.875rem;">
+                    {{ report.get_status_display|upper }}
+                </div>
+            </div>
+            
+            <div style="margin: 1.5rem 0; padding: 1.5rem; background: var(--bg-secondary); border-radius: 8px;">
+                <h4 style="margin-bottom: 0.5rem; font-weight: 600;">DESCRIPTION</h4>
+                <p style="color: var(--text-secondary);">{{ report.description }}</p>
+            </div>
+            
+            {% if report.photo %}
+            <div style="margin: 1.5rem 0;">
+                <h4 style="margin-bottom: 0.5rem; font-weight: 600;">ATTACHED PHOTO</h4>
+                <img src="{{ report.photo.url }}" style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            </div>
+            {% endif %}
+            
+            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+                <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                    REPORTED: {{ report.created_at|date:"d M Y, H:i" }}
+                </p>
+                {% if report.updated_at != report.created_at %}
+                <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.5rem;">
+                    LAST UPDATED: {{ report.updated_at|date:"d M Y, H:i" }}
+                </p>
+                {% endif %}
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <a href="/tracking/" class="btn btn-secondary">← BACK TO REPORTS</a>
+                <a href="/" class="btn btn-primary">REPORT NEW ISSUE</a>
+            </div>
+        </div>
+        
+        <div class="nav">
+            <a href="/tracking/">📋 MY REPORTS</a>
+            <a href="/">📍 REPORT ISSUE</a>
+            <a href="/tracking/profile/">👤 PROFILE</a>
+        </div>
+    </div>
+    
+    <script src="{% static 'reports/script.js' %}"></script>
+</body>
+</html>
