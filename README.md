@@ -64,7 +64,7 @@ This project was created for academic purposes as part of the Human-Computer Int
 ## Author
 
 **Maafrica Mokoena**
-- Student Number: 20243380
+- Student Number: 202438830
 - Sol Plaatje University
 
 ## Acknowledgments
