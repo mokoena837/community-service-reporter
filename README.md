@@ -37,56 +37,7 @@ community-service-reporter/
     └── templates/tracking/
 \\\
 
-## Installation
 
-1. Clone the repository:
-\\\ash
-git clone https://github.com/yourusername/community-service-reporter.git
-cd community-service-reporter
-\\\
-
-2. Create a virtual environment:
-\\\ash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-\\\
-
-3. Install dependencies:
-\\\ash
-pip install -r requirements.txt
-\\\
-
-4. Run migrations:
-\\\ash
-python manage.py makemigrations
-python manage.py migrate
-\\\
-
-5. Create superuser (optional):
-\\\ash
-python manage.py createsuperuser
-\\\
-
-6. Run the development server:
-\\\ash
-python manage.py runserver
-\\\
-
-7. Open your browser and navigate to: http://127.0.0.1:8000
-
-## Screenshots
-
-### Report Issue Interface
-[Add screenshot here]
-
-### My Reports Dashboard
-[Add screenshot here]
-
-### Report Status Details
-[Add screenshot here]
-
-### User Profile
-[Add screenshot here]
 
 ## Navigation
 
@@ -105,17 +56,6 @@ python manage.py runserver
 - Loading spinner during form submission
 - Mobile-responsive layout
 
-## User Personas
-
-### Thabo
-- 34-year-old taxi driver
-- Needs quick mobile reporting while working
-- Values efficiency and minimal steps
-
-### Maria
-- 55-year-old small business owner
-- Needs detailed updates and status tracking
-- Values transparency and communication
 
 ## License
 
